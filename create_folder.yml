@@ -1,0 +1,12 @@
+#create a basic folder with read permission only 
+
+---
+
+- name: Create a folder
+  hosts: localhost
+  tasks:
+  - name: Create directory
+    ansible.builtin.file:
+      path: /home/ec2-user/aws
+      state: directory
+      mode: 7000
