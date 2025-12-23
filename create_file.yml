@@ -1,0 +1,15 @@
+---
+- name: Create a file
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    dest_path: /tmp/created_by_ansible.txt
+    file_content: "Hello from Ansible"
+    mode: '0644'
+  tasks:
+    - name: Create file with content
+      ansible.builtin.copy:
+        dest: "{{ dest_path }}"
+        content: "{{ file_content }}"
+        mode: "{{ mode }}"
