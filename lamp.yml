@@ -1,0 +1,49 @@
+#Linux
+# Apache
+# Mariadb
+# Php
+
+- name: Install lamp stack
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: Install httpd
+    ansible.builtin.dnf:
+      name: httpd
+      state: present
+
+  - name: Start and enable httpd
+    ansible.builtin.systemd_service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: Install Mariadb
+    ansible.builtin.dnf:
+      name: mariadb105-server
+      state: present
+
+  - name: Start and enable Mariadb
+    ansible.builtin.systemd_service:
+      name: mariadb
+      state: started
+      enabled: true
+
+  - name: Install Php
+    ansible.builtin.dnf:
+      name: php-fpm
+      state: present
+
+  - name: Start and enable Php
+    ansible.builtin.systemd_service:
+      name: php-fpm
+      state: started
+      enabled: true
+
+  - name: Deploy PHP web page
+    ansible.builtin.copy:
+      dest: /var/www/html/index.php
+      content: |
+        <?php
+          phpinfo();
+        ?>

@@ -1,0 +1,10 @@
+---
+
+- name : install custom packages
+  hosts: localhost
+  tasks:
+  - 
+  - name: install httpd 
+    ansible.builtin.dnf:
+      name: httpd
+      state: present

@@ -1,0 +1,11 @@
+---
+- name: copy a file
+  hosts: localhost
+  tasks:
+  - name:
+    ansible.builtin.copy:
+      source: /root/ansible.txt
+      dest: /home/ec2-user/aws
+      mode: 0644
+      
+
